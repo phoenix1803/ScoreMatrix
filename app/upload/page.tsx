@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import UploadReferenceFile from "@/components/UploadReferenceFile"
-import UploadMultipleFiles from "@/components/UploadMultipleFiles"
-import ThankYouPage from "@/components/ThankYouPage"
+import UploadReferenceFile from "../../components/UploadReferenceFile"
+import UploadMultipleFiles from "../../components/UploadMultipleFiles"
+import ThankYouPage from "../../components/ThankYouPage"
 
 const UploadPage = () => {
   const [step, setStep] = useState(1)

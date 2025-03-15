@@ -380,7 +380,7 @@ const HomePage = () => {
           >
             <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 p-1 rounded-xl">
               <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                src="https://www.youtube.com/embed/oQf9VVYP4KE"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -414,7 +414,7 @@ const HomePage = () => {
             className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-16"
             variants={itemVariants}
           >
-            Choose the plan that works best for your institution
+            Choose the plan that works best for you!
           </motion.p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -526,7 +526,7 @@ const HomePage = () => {
                 
                 <Link
                   href="/signup"
-                  className={`w-full block text-center py-3 rounded-lg font-medium transition duration-300 ${
+                  className={`w-full block text-center py-3 rounded-lg font-medium transition duration-300 mt-auto ${
                     plan.isPopular
                       ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700"
                       : "bg-gray-100 text-gray-800 hover:bg-gray-200"

@@ -1,0 +1,96 @@
+{
+    "individual_results": [
+        {
+            "roll_number": "Unknown",
+            "file_name": "1.pdf",
+            "question_number": 1,
+            "question": "What is calorific value ? And what are the factors affecting it ?",
+            "reference_answer": "Calorific value is the amount of heat released when a substance undergoes complete combustion.  It's typically expressed as energy per unit mass or volume. Factors affecting calorific value include the chemical composition of the substance, its moisture content, and the presence of impurities.",
+            "student_answer": "",
+            "marks_awarded": 1.0,
+            "total_marks": 3,
+            "weak_topics": "Incomplete and inaccurate explanation of factors affecting calorific value",
+            "improvement_tips": [
+                "Expand on the explanation of how chemical composition affects calorific value.  Specifically",
+                "mention the types of bonds (e.g.",
+                "C-H",
+                "C-C) and their energy content.  Explain how different elements contribute differently to the overall energy released.",
+                "Discuss the effect of moisture content in more detail. Explain that moisture absorbs heat during combustion",
+                "thus reducing the net heat released. Provide a quantitative example if possible.",
+                "Elaborate on the types of impurities and their impact.  For example",
+                "explain how the presence of ash or inert materials dilutes the combustible material",
+                "reducing the overall calorific value.",
+                "Consider adding other factors that affect calorific value such as: the pressure and temperature at which combustion occurs",
+                "and the completeness of combustion (which relates to the available oxygen).",
+                "Use precise scientific terminology. Avoid vague terms like 'impurities'. Be specific about the types of impurities.",
+                "Support claims with examples.  For instance",
+                "mention specific fuels and their typical calorific values to illustrate the influence of chemical composition.",
+                "Structure the answer logically. Begin with a clear definition",
+                "followed by a well-organized discussion of the influencing factors",
+                "each explained thoroughly."
+            ]
+        },
+        {
+            "roll_number": "Unknown",
+            "file_name": "1.pdf",
+            "question_number": 2,
+            "question": "difference between coking coal and caking coal",
+            "reference_answer": "Caking coal, a type of bituminous coal, softens and melts upon heating, allowing it to fuse together into a solid mass called coke.  Coking coal is a specific type of caking coal that meets stringent quality standards for use in coke ovens for steel production.  These standards relate to factors like volatile matter and ash content.  Essentially, all coking coal is caking coal, but not all caking coal is coking coal.",
+            "student_answer": "",
+            "marks_awarded": 0.7,
+            "total_marks": 3,
+            "weak_topics": "Understanding the hierarchical relationship between coking coal and caking coal",
+            "improvement_tips": [
+                "Focus on the definition of caking coal first.  Clearly explain that it's a type of bituminous coal that softens and fuses when heated.",
+                "Then introduce coking coal as a *subset* of caking coal. Emphasize that it meets specific",
+                "stricter quality requirements.",
+                "Use a Venn diagram or other visual aid to illustrate the relationship between caking coal and coking coal.  This helps clarify the 'all A are B",
+                "but not all B are A' concept.",
+                "Provide examples of the specific quality standards (volatile matter",
+                "ash content",
+                "etc.) that distinguish coking coal from other caking coals.  This demonstrates a deeper understanding.",
+                "Use precise terminology.  Avoid ambiguity or vague descriptions.",
+                "Practice explaining complex hierarchical relationships using clear and concise language. This may involve breaking down the concepts into smaller",
+                "easier-to-understand parts.",
+                "Review the definitions and properties of various types of coal to build a strong foundation of knowledge in this area."
+            ]
+        },
+        {
+            "roll_number": "Unknown",
+            "file_name": "1.pdf",
+            "question_number": 3,
+            "question": "what is cracking of crude oil ? List its types",
+            "reference_answer": "Cracking is a process in petroleum refining where large, complex hydrocarbon molecules in crude oil are broken down into smaller, more useful molecules like gasoline and other fuels.  This is achieved through high temperatures and pressures, sometimes with the aid of catalysts.  Two main types are thermal cracking, which uses heat alone, and catalytic cracking, employing catalysts to enhance the process and produce a higher yield of desired products.  Fluid catalytic cracking (FCC) is a prevalent and highly efficient form of catalytic cracking.  Hydrocracking, a variation, uses hydrogen gas under high pressure and temperature to further refine the products and reduce the amount of undesirable byproducts.",
+            "student_answer": "",
+            "marks_awarded": 1.0,
+            "total_marks": 4,
+            "weak_topics": "Incomplete and inaccurate description of cracking types",
+            "improvement_tips": [
+                "Thoroughly review the different types of cracking processes.  The answer should go beyond simply naming them; it needs to explain the differences in methods and resulting products.",
+                "Focus on the key differences between thermal and catalytic cracking.  Explain the role of catalysts in catalytic cracking and how it improves efficiency and product yield.",
+                "Research and understand different variations of catalytic cracking such as fluid catalytic cracking (FCC).  Explain why FCC is significant.",
+                "Include hydrocracking as a distinct type",
+                "highlighting the use of hydrogen and its impact on product quality and byproduct reduction.",
+                "Use precise terminology when describing the chemical processes involved.  Avoid vague or overly simplified language.",
+                "Practice writing concise and comprehensive explanations of complex topics. Break down complex processes into manageable steps.",
+                "Use reliable sources like chemistry textbooks and reputable online resources to verify your understanding and ensure accuracy.",
+                "Employ diagrams or flowcharts to visualize the cracking process and its different types if appropriate. This will help with understanding and explanation.",
+                "After writing your answer",
+                "review it critically to identify gaps in knowledge or unclear explanations.  Seek feedback from peers or instructors."
+            ]
+        }
+    ],
+    "student_summaries": [
+        {
+            "roll_number": "Unknown",
+            "total_marks": 10,
+            "marks_awarded": 2.7,
+            "percentage": 27.0,
+            "common_weak_topics": [
+                "Incomplete and inaccurate explanation of factors affecting calorific value",
+                "Understanding the hierarchical relationship between coking coal and caking coal",
+                "Incomplete and inaccurate description of cracking types"
+            ]
+        }
+    ]
+}

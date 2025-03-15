@@ -1,3 +1,8 @@
+node_modules/
+frontend/venv/
+frontend/__pycache__/
+*.pyc
+.DS_Store
 /node_modules
 /.next/
 /out/

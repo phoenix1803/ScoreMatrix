@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
 import path from 'path';
 import { spawn } from 'child_process';
+import { existsSync } from 'fs';
 
 export async function POST(request: Request) {
   try {
@@ -27,7 +28,9 @@ export async function POST(request: Request) {
     );
 
     return new Promise((resolve) => {
-      const pythonPath = "C:\\Users\\Admin\\anaconda3\\envs\\myenv\\python.exe"; 
+      // virtual environment Python exists
+      const venvPythonPath = "C:\\Users\\Admin\\anaconda3\\envs\\myenv\\python.exe";
+      const pythonPath = existsSync(venvPythonPath) ? venvPythonPath : "python"; // Fallback
 
       const pythonProcess = spawn(pythonPath, [
         path.join(process.cwd(), 'lib', 'processFiles.py'),

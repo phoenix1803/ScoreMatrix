@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const pythonProcess = spawn("python", ["D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/lib/send_email.py", to, subject]);
+    const pythonProcess = spawn("python", ["../frontend/lib/send_email.py", to, subject]);
 
     pythonProcess.stdout.on("data", (data) => {
       console.log(`Python Output: ${data}`);

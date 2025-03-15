@@ -21,7 +21,7 @@ if len(sys.argv) < 3:
 recipient_email = sys.argv[1]
 email_subject = sys.argv[2]
 
-students_json_path = "D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/data/students.json"  
+students_json_path = "../frontend/data/students.json"  
 try:
     with open(students_json_path, "r", encoding="utf-8") as f:
         students_data = json.load(f)
@@ -67,7 +67,7 @@ msg["Subject"] = email_subject
 
 msg.attach(MIMEText(email_content, "plain"))
 
-pdf_filename = "D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/outputs/answers.docx"
+pdf_filename = "../frontend/outputs/answers.docx"
 try:
     with open(pdf_filename, "rb") as attachment:
         pdf_part = MIMEBase("application", "octet-stream")

@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { auth } from "@/lib/firebase.config";
+import { auth } from "../lib/firebase.config";
 import {
   onAuthStateChanged,
   signInWithEmailAndPassword,

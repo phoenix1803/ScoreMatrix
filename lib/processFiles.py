@@ -26,15 +26,12 @@ from textblob import TextBlob
 
 genai.configure(api_key="AIzaSyAQvW-7i3jnNu5qwolDOPV9q2HhdkKtrAU")
 
-# Suppress warnings
 warnings.filterwarnings("ignore")
 
-# Download NLTK resources
 nltk.download('stopwords', quiet=True)
 nltk.download('punkt', quiet=True)
 nltk.download('vader_lexicon', quiet=True)
 
-# Constants
 EN_STOPWORDS = set(stopwords.words("english"))
 
 def extract_questions_from_docx(docx_path):
@@ -125,7 +122,7 @@ def generate_answers_json_and_docx(classified_data, output_json, output_docx):
 
 def process_question_paper(input_file):
     """Process the question paper and generate reference answers."""
-    output_dir = "D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/outputs"
+    output_dir = "../frontend/outputs"
     os.makedirs(output_dir, exist_ok=True)
     output_json = os.path.join(output_dir, "classified_questions.json")
     output_docx = os.path.join(output_dir, "answers.docx")
@@ -182,7 +179,6 @@ def process_opinion_answer(reference_answer, student_answer, max_marks):
     Returns:
         float: Score awarded to the student's answer.
     """
-    # Define the prompt for Gemini
     prompt = f"""
     Evaluate the student's opinion-based answer based on the following criteria:
     1. **Sentiment Match**: Does the student's sentiment align with the reference answer?
@@ -197,16 +193,13 @@ def process_opinion_answer(reference_answer, student_answer, max_marks):
     Provide a score out of {max_marks} based on the above criteria. Return only the score as a number.
     """
 
-    # Initialize Gemini model
     model = genai.GenerativeModel("gemini-1.5-flash-latest")
     response = model.generate_content(prompt)
 
     try:
-        # Extract the score from Gemini's response
         score = float(response.text.strip())
-        return min(score, max_marks)  # Ensure the score does not exceed max_marks
+        return min(score, max_marks)
     except ValueError:
-        # Fallback in case Gemini does not return a valid number
         print("Gemini did not return a valid score. Using fallback scoring method.")
         return evaluate_opinion_fallback(reference_answer, student_answer, max_marks)
 
@@ -472,7 +465,6 @@ def evaluate_answers(input_pdf, classified_json, output_json):
         
         results = []
         
-        # Evaluate each question
         for i, entry in enumerate(classified_data):
             question_num = entry["Question Number"]
             question = entry["Question"]
@@ -480,18 +472,15 @@ def evaluate_answers(input_pdf, classified_json, output_json):
             marks = entry["Marks"]
             reference_answer = entry["Reference Answer"]
             
-            # Get the student's answer (if available)
             student_answer = student_answers[i][1] if i < len(student_answers) else ""
             
-            # Calculate the score based on the question type
             if q_type == "MCQ":
                 score = process_mcq_answer(reference_answer, student_answer)
             elif q_type == "Opinion-based":
                 score = process_opinion_answer(reference_answer, student_answer, marks)
-            else:  # Descriptive
+            else:
                 score = process_descriptive_answer(reference_answer, student_answer, marks)
             
-            # Create the result entry
             result_entry = {
                 "roll_number": roll_number,
                 "file_name": os.path.basename(input_pdf),
@@ -503,18 +492,15 @@ def evaluate_answers(input_pdf, classified_json, output_json):
                 "total_marks": marks
             }
             
-            # Add weak topics and improvement tips if the score is low
-            if score < marks * 0.8:  # If score is less than 80% of possible marks
+            if score < marks * 0.8: 
                 weak_data = identify_weak_topics(question, student_answer, reference_answer)
                 result_entry["weak_topics"] = weak_data["weak_topic"]
                 result_entry["improvement_tips"] = weak_data["tips"]
             
             results.append(result_entry)
         
-        # Ensure the output directory exists
         os.makedirs(os.path.dirname(output_json), exist_ok=True)
         
-        # Save the results to a JSON file
         with open(output_json, "w", encoding="utf-8") as f:
             json.dump(results, f, indent=4, ensure_ascii=False)
         
@@ -526,8 +512,8 @@ def evaluate_answers(input_pdf, classified_json, output_json):
 
 def process_student_answer_sheet(student_pdf):
     """Process a single student's answer sheet."""
-    classified_json = "D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/outputs/classified_questions.json"
-    output_json = f"D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/data/{os.path.basename(student_pdf).split('.')[0]}_results.json"
+    classified_json = "../frontend/outputs/classified_questions.json"
+    output_json = f"../frontend/data/{os.path.basename(student_pdf).split('.')[0]}_results.json"
     
     results = evaluate_answers(student_pdf, classified_json, output_json)
     print(f"Evaluation complete for {student_pdf}. Results saved to {output_json}")
@@ -590,7 +576,7 @@ def generate_class_summary(result_files, output_json):
     print(f"Class summary generated and saved to {output_json}")
 
 if __name__ == "__main__":
-    folder = "D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/uploads"
+    folder = "../frontend/uploads"
     base_filename = "question-paper"
     
     pdf_file = os.path.join(folder, base_filename + ".pdf")
@@ -605,8 +591,8 @@ if __name__ == "__main__":
         exit(1)
     
     result_files = process_all_student_sheets(folder)
-    folderr="D:/Scoremattttttttttrrrrrriiiiiiiixxxxxxx/frontend/data"
+    folderr="../frontend/data"
     summary_json = os.path.join(folderr,"class_summary.json")
     generate_class_summary(result_files, summary_json)
     
-    print("All processing complete!")
+    print("chalta hai sab kuch yay!")
