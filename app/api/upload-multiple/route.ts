@@ -4,7 +4,7 @@ import path from 'path';
 import { spawn } from 'child_process';
 import { existsSync } from 'fs';
 
-export async function POST(request: Request) {
+export async function POST(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
     const files = formData.getAll('files') as File[];
@@ -27,8 +27,7 @@ export async function POST(request: Request) {
       })
     );
 
-    return new Promise((resolve) => {
-      // virtual environment Python exists
+    return new Promise<Response>((resolve) => {  // Explicitly setting <Response>
       const venvPythonPath = "C:\\Users\\Admin\\anaconda3\\envs\\myenv\\python.exe";
       const pythonPath = existsSync(venvPythonPath) ? venvPythonPath : "python"; // Fallback
 
