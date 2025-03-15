@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import { motion } from "framer-motion"
 import { Download, Share2, RefreshCw } from "lucide-react"
 import ProtectedRoute from "./ProtectedRoute"

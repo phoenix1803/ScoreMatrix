@@ -47,11 +47,9 @@ module.exports = {
         },
 
         //Keeping existing colors
-        primary: "#3B82F6",
-        secondary: "#8B5CF6",
         tertiary: "#EC4899",
         quarternary: "#F59E0B",
-        bggg:"#534534",
+        bggg: "#534534",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -60,6 +58,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
 }
 
