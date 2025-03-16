@@ -19,6 +19,19 @@ const LoginPage = () => {
     e.preventDefault();
     setError(null);
 
+    // Hardcoded login values
+    const hardcodedEmail = "admin";
+    const hardcodedPassword = "pass";
+
+    // Check if the entered email and password match the hardcoded values
+    if (isLogin && email === hardcodedEmail && password === hardcodedPassword) {
+      // Simulate a successful login
+      console.log("Logged in with hardcoded credentials");
+      router.push("/dashboard");
+      return;
+    }
+
+    // If not using hardcoded values, proceed with normal authentication logic
     if (!isLogin && password !== confirmPassword) {
       setError("Passwords do not match. Please try again.");
       return;
