@@ -20,8 +20,8 @@ const LoginPage = () => {
     setError(null);
 
     // Hardcoded login values
-    const hardcodedEmail = "admin";
-    const hardcodedPassword = "pass";
+    const hardcodedEmail = "admin@gmail.com";
+    const hardcodedPassword = "1234";
 
     // Check if the entered email and password match the hardcoded values
     if (isLogin && email === hardcodedEmail && password === hardcodedPassword) {
