@@ -32,6 +32,7 @@ const LoginPage = () => {
       }
       router.push("/dashboard");
     } catch (err) {
+      console.error(err);
       setError("Invalid email or password. Please try again.");
     }
   };
@@ -41,6 +42,7 @@ const LoginPage = () => {
       await signInWithGoogle();
       router.push("/dashboard");
     } catch (err) {
+      console.error(err);
       setError("Failed to sign in with Google. Please try again.");
     }
   };

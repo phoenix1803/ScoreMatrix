@@ -31,6 +31,7 @@ const ThankYouPage = ({
   void uploadedFiles;
   void onRestart;
   const [reportData, setReportData] = useState<unknown>(null); // Use `unknown` for dynamic data
+  const [isDownloaded, setIsDownloaded] = useState(false); // Track if the download button has been clicked
 
   const handleDownload = async () => {
     try {
@@ -50,6 +51,9 @@ const ThankYouPage = ({
         a.download = "report.xlsx";
         a.click();
         window.URL.revokeObjectURL(url);
+
+        // Disable the button after successful download
+        setIsDownloaded(true);
       } else {
         console.error("Failed to convert JSON to Excel");
       }
@@ -143,11 +147,12 @@ const ThankYouPage = ({
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 rounded-md bg-primary text-white font-semibold flex items-center"
+            className="px-6 py-2 rounded-md bg-primary text-white font-semibold flex items-center disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={handleDownload}
+            disabled={isDownloaded}
           >
             <Download className="mr-2" size={20} />
-            Download Report
+            {isDownloaded ? "Downloaded" : "Download Report"}
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }}
