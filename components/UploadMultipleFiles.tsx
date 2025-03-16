@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Upload, X } from "lucide-react";
@@ -33,27 +34,27 @@ const UploadMultipleFiles: React.FC<UploadMultipleFilesProps> = ({ onUpload, onS
 
   const handleSubmit = async () => {
     if (!files.length) return;
-  
+
     setIsProcessing(true);
     setResult(null);
-  
+
     try {
       const formData = new FormData();
       files.forEach((file) => {
         formData.append("files", file);
       });
-  
+
       const response = await fetch("/api/upload-multiple", {
         method: "POST",
         body: formData,
       });
-  
+
       if (!response.ok) {
         throw new Error("Processing failed");
       }
-  
+
       const data: { message: string; downloadLink?: string; error?: string } = await response.json();
-  
+
       if (data.error) {
         alert(`Processing failed: ${data.error}`);
       } else {
@@ -101,8 +102,8 @@ const UploadMultipleFiles: React.FC<UploadMultipleFilesProps> = ({ onUpload, onS
               {files.map((file, index) => (
                 <div key={index} className="flex items-center justify-between p-2 bg-gray-100 rounded">
                   <span className="truncate">{file.name}</span>
-                  <button 
-                    onClick={() => removeFile(index)} 
+                  <button
+                    onClick={() => removeFile(index)}
                     className="text-red-500 hover:text-red-700"
                     disabled={isProcessing}
                   >
@@ -113,7 +114,7 @@ const UploadMultipleFiles: React.FC<UploadMultipleFilesProps> = ({ onUpload, onS
             </div>
           </div>
         )}
-        
+
         {result && (
           <div className="p-4 bg-green-100 rounded">
             <p className="font-semibold text-green-800">Processing complete!</p>
@@ -125,7 +126,7 @@ const UploadMultipleFiles: React.FC<UploadMultipleFilesProps> = ({ onUpload, onS
             </button>
           </div>
         )}
-        
+
         <div className="flex justify-between">
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -139,9 +140,8 @@ const UploadMultipleFiles: React.FC<UploadMultipleFilesProps> = ({ onUpload, onS
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`px-6 py-2 rounded-md text-white font-semibold ${
-              files.length > 0 ? "bg-primary hover:bg-primary-dark" : "bg-gray-300 cursor-not-allowed"
-            }`}
+            className={`px-6 py-2 rounded-md text-white font-semibold ${files.length > 0 ? "bg-primary hover:bg-primary-dark" : "bg-gray-300 cursor-not-allowed"
+              }`}
             onClick={handleSubmit}
             disabled={files.length === 0 || isProcessing}
           >

@@ -13,7 +13,24 @@ export async function GET() {
   const filePath = path.join(outputDir, files[0]);
   const fileStream = fs.createReadStream(filePath);
 
-  return new NextResponse(fileStream, {
+  // Create a ReadableStream that Next.js can accept
+  const readableStream = new ReadableStream({
+    start(controller) {
+      fileStream.on('data', chunk => {
+        controller.enqueue(chunk);
+      });
+
+      fileStream.on('end', () => {
+        controller.close();
+      });
+
+      fileStream.on('error', err => {
+        controller.error(err);
+      });
+    },
+  });
+
+  return new NextResponse(readableStream, {
     headers: {
       'Content-Type': 'application/octet-stream',
       'Content-Disposition': `attachment; filename="${files[0]}"`,

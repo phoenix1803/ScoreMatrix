@@ -1,14 +1,15 @@
 "use client"
 
+import React from 'react';
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
 const ProfilePage = () => {
-  const [user, setUser] = useState({
+  const [user] = useState({
     name: "John Doe",
     email: "john@example.com",
     avatar: "/placeholder.svg",
-  })
+  },)
 
   useEffect(() => {
     // Fetch user data from API or local storage

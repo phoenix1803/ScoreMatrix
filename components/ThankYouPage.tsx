@@ -1,14 +1,36 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Download, Share2, RefreshCw } from "lucide-react"
-import ProtectedRoute from "./ProtectedRoute"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
+import React from "react";
+import { motion } from "framer-motion";
+import { Download, Share2, RefreshCw } from "lucide-react";
+import ProtectedRoute from "./ProtectedRoute";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-const ThankYouPage = ({ }) => {
-  const router = useRouter()
-  const [reportData, setReportData] = useState(null)
+// Define a type for the parameters object
+interface Parameters {
+  [key: string]: string | number | boolean; // Adjust based on your actual parameter structure
+}
+
+interface ThankYouPageProps {
+  referenceFile: File | null;
+  parameters: Parameters; // Use the defined type
+  uploadedFiles: File[];
+  onRestart: () => void;
+}
+
+const ThankYouPage = ({
+  referenceFile,
+  parameters,
+  uploadedFiles,
+  onRestart,
+}: ThankYouPageProps) => {
+  const router = useRouter();
+  void referenceFile;
+  void parameters;
+  void uploadedFiles;
+  void onRestart;
+  const [reportData, setReportData] = useState<unknown>(null); // Use `unknown` for dynamic data
 
   const handleDownload = async () => {
     try {
@@ -18,25 +40,24 @@ const ThankYouPage = ({ }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ filePath: "path/to/your/report.json" }), // Replace with actual JSON file path
-      })
+      });
 
       if (response.ok) {
-        const blob = await response.blob()
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement("a")
-        a.href = url
-        a.download = "report.xlsx"
-        a.click()
-        window.URL.revokeObjectURL(url)
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "report.xlsx";
+        a.click();
+        window.URL.revokeObjectURL(url);
       } else {
-        console.error("Failed to convert JSON to Excel")
+        console.error("Failed to convert JSON to Excel");
       }
     } catch (error) {
-      console.error("Error downloading report:", error)
+      console.error("Error downloading report:", error);
     }
-  }
+  };
 
-  // Handle share: Implement share logic
   const handleShare = async () => {
     try {
       const response = await fetch("/api/share-report", {
@@ -45,42 +66,47 @@ const ThankYouPage = ({ }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ filePath: "path/to/your/report.json" }), // Replace with actual JSON file path
-      })
+      });
 
       if (response.ok) {
-        const data = await response.json()
-        console.log("Shareable link:", data.shareableLink)
-        alert(`Report shared successfully! Link: ${data.shareableLink}`)
+        const data = await response.json();
+        console.log("Shareable link:", data.shareableLink);
+        alert(`Report shared successfully! Link: ${data.shareableLink}`);
       } else {
-        console.error("Failed to share report")
+        console.error("Failed to share report");
       }
     } catch (error) {
-      console.error("Error sharing report:", error)
+      console.error("Error sharing report:", error);
     }
-  }
+  };
 
   // Handle view report: Fetch and display JSON data
   const handleViewReport = async () => {
     try {
       const response = await fetch("/api/get-report-data", {
         method: "GET",
-      })
+      });
 
       if (response.ok) {
-        const data = await response.json()
-        setReportData(data)
+        const data = await response.json();
+        setReportData(data);
       } else {
-        console.error("Failed to fetch report data")
+        console.error("Failed to fetch report data");
       }
     } catch (error) {
-      console.error("Error viewing report:", error)
+      console.error("Error viewing report:", error);
     }
-  }
+  };
 
   // Redirect to dashboard
   const handleDashboardRedirect = () => {
-    router.push("/dashboard")
-  }
+    router.push("/dashboard");
+  };
+
+  // Type guard to check if reportData is an object
+  const isReportData = (data: unknown): data is Record<string, unknown> => {
+    return typeof data === "object" && data !== null;
+  };
 
   return (
     <ProtectedRoute>
@@ -103,7 +129,12 @@ const ThankYouPage = ({ }) => {
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M5 13l4 4L19 7"
+            ></path>
           </svg>
         </motion.div>
         <h2 className="text-3xl font-bold">Thank You!</h2>
@@ -147,7 +178,7 @@ const ThankYouPage = ({ }) => {
         </motion.button>
 
         {/* Display report data */}
-        {reportData && (
+        {isReportData(reportData) && (
           <div className="mt-8 p-4 bg-gray-100 rounded-lg text-left">
             <h3 className="text-xl font-bold mb-4">Report Data</h3>
             <pre>{JSON.stringify(reportData, null, 2)}</pre>
@@ -155,7 +186,7 @@ const ThankYouPage = ({ }) => {
         )}
       </motion.div>
     </ProtectedRoute>
-  )
-}
+  );
+};
 
-export default ThankYouPage
+export default ThankYouPage;

@@ -1,5 +1,6 @@
 "use client"
 
+import React from 'react';
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown } from "lucide-react"
@@ -31,8 +32,7 @@ const faqs = [
   },
 ]
 
-const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
-  {
+const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (

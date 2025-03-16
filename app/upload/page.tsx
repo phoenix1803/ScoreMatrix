@@ -1,41 +1,45 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import UploadReferenceFile from "../../components/UploadReferenceFile"
-import UploadMultipleFiles from "../../components/UploadMultipleFiles"
-import ThankYouPage from "../../components/ThankYouPage"
+import React, { useState } from "react";
+import UploadReferenceFile from "../../components/UploadReferenceFile";
+import UploadMultipleFiles from "../../components/UploadMultipleFiles";
+import ThankYouPage from "../../components/ThankYouPage";
+
+interface Parameters {
+  [key: string]: string | number | boolean;
+}
 
 const UploadPage = () => {
-  const [step, setStep] = useState(1)
-  const [referenceFile, setReferenceFile] = useState(null)
-  const [parameters, setParameters] = useState({})
-  const [uploadedFiles, setUploadedFiles] = useState([])
+  const [step, setStep] = useState(1);
+  const [referenceFile, setReferenceFile] = useState<File | null>(null);
+  const [parameters, setParameters] = useState<Parameters>({});
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
 
   const handleNextStep = () => {
-    setStep(step + 1)
-  }
+    setStep(step + 1);
+  };
 
   const handlePreviousStep = () => {
-    setStep(step - 1)
-  }
+    setStep(step - 1);
+  };
 
-  const handleReferenceFileUpload = (file) => {
-    setReferenceFile(file)
-  }
+  const handleReferenceFileUpload = (file: File) => {
+    setReferenceFile(file);
+  };
 
-  const handleParameterChange = (newParameters) => {
-    setParameters(newParameters)
-  }
+  const handleParameterChange = (newParameters: Parameters) => {
+    setParameters(newParameters);
+  };
 
-  const handleMultipleFilesUpload = (files) => {
-    setUploadedFiles(files)
-  }
+  const handleMultipleFilesUpload = (files: File[]) => {
+    setUploadedFiles(files);
+  };
 
   const handleSubmit = async () => {
     // Simulating backend processing
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-    handleNextStep()
-  }
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    handleNextStep();
+  };
 
   return (
     <div className="max-w-4xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
@@ -62,8 +66,7 @@ const UploadPage = () => {
         />
       )}
     </div>
-  )
-}
+  );
+};
 
-export default UploadPage
-
+export default UploadPage;

@@ -1,13 +1,9 @@
 "use client"
 
+import React from 'react';
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useSpring, useInView, useAnimation, AnimatePresence } from "framer-motion";
-
-interface Section {
-  id: string;
-  label: string;
-}
+import { motion, useScroll, useSpring, useAnimation, } from "framer-motion";
 
 interface SectionRefs {
   [key: string]: HTMLElement | null;
@@ -22,9 +18,11 @@ const HomePage = () => {
   });
 
   const [scrollProgress, setScrollProgress] = useState(0);
+  void scrollProgress;
   const [activeSection, setActiveSection] = useState("");
   const sectionRefs = useRef<SectionRefs>({});
-  
+  void sectionRefs;
+
   // Refs for each section
   const heroRef = useRef(null);
   const stepsRef = useRef(null);
@@ -32,14 +30,14 @@ const HomePage = () => {
   const pricingRef = useRef(null);
   const whyUsRef = useRef(null);
   const communityRef = useRef(null);
-  
+
   // Animation controls
   const stepsControls = useAnimation();
   const videoControls = useAnimation();
   const pricingControls = useAnimation();
   const whyUsControls = useAnimation();
   const communityControls = useAnimation();
-  
+
   // Animation for floating elements
   const floatingAnimation = {
     y: [0, -10, 0],
@@ -49,7 +47,7 @@ const HomePage = () => {
       ease: "easeInOut"
     }
   };
-
+  void floatingAnimation;
   useEffect(() => {
     const handleScroll = () => {
       const totalScroll = window.scrollY;
@@ -74,8 +72,8 @@ const HomePage = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-          
-          switch(entry.target.id) {
+
+          switch (entry.target.id) {
             case "steps":
               stepsControls.start("visible");
               break;
@@ -117,21 +115,21 @@ const HomePage = () => {
 
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.8, 
+      transition: {
+        duration: 0.8,
         staggerChildren: 0.2,
         delayChildren: 0.1
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }
@@ -143,23 +141,22 @@ const HomePage = () => {
         className="fixed top-0 left-0 right-0 h-2 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 z-50"
         style={{ scaleX }}
       />
-      
+
       <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-40 hidden md:block">
         {["hero", "steps", "video", "pricing", "why-us", "community"].map((id) => (
           <motion.div
             key={id}
-            className={`w-4 h-4 mb-4 rounded-full cursor-pointer border-2 border-primary ${
-              activeSection === id ? "bg-primary" : "bg-transparent"
-            }`}
+            className={`w-4 h-4 mb-4 rounded-full cursor-pointer border-2 border-primary ${activeSection === id ? "bg-primary" : "bg-transparent"
+              }`}
             onClick={() => scrollToSection(id)}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
           />
         ))}
       </div>
-       
-      <motion.section 
-        id="hero" 
+
+      <motion.section
+        id="hero"
         ref={heroRef}
         className="h-screen flex items-center justify-center relative overflow-hidden"
         initial={{ opacity: 0 }}
@@ -168,7 +165,7 @@ const HomePage = () => {
       >
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-800 via-indigo-900 to-purple-900" />
-          
+
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
@@ -192,9 +189,9 @@ const HomePage = () => {
             />
           ))}
         </div>
-        
+
         <div className="text-center z-10 px-4 sm:px-6 lg:px-8 relative">
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-7xl font-bold mb-6 text-white"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -202,8 +199,8 @@ const HomePage = () => {
           >
             Welcome to <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-400">ScoreMatrix</span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-xl md:text-2xl mb-8 text-white text-opacity-90"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -211,7 +208,7 @@ const HomePage = () => {
           >
             Streamline answer sheet evaluation with powerful AI precision
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -226,7 +223,7 @@ const HomePage = () => {
                 Get Started
               </Link>
             </motion.div>
-            
+
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="#video"
@@ -240,13 +237,13 @@ const HomePage = () => {
               </Link>
             </motion.div>
           </motion.div>
-          
-          
+
+
         </div>
       </motion.section>
 
-      <motion.section 
-        id="steps" 
+      <motion.section
+        id="steps"
         ref={stepsRef}
         className="py-24 bg-white relative overflow-hidden"
         variants={sectionVariants}
@@ -255,28 +252,28 @@ const HomePage = () => {
       >
         <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-200 to-pink-100 rounded-full opacity-20 transform translate-x-1/2 -translate-y-1/2"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-200 to-purple-100 rounded-full opacity-20 transform -translate-x-1/2 translate-y-1/2"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-5xl font-bold mb-4 text-center"
             variants={itemVariants}
           >
             How It <span className="text-primary">Works</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-16"
             variants={itemVariants}
           >
             Three simple steps to transform your answer sheet evaluation process
           </motion.p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             <div className="hidden md:block absolute top-1/3 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform -translate-y-1/2 z-0"></div>
-            
+
             {[
-              { 
-                title: "Upload Files", 
+              {
+                title: "Upload Files",
                 description: "Securely upload your answer sheets in bulk with our drag-and-drop interface",
                 icon: (
                   <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -284,8 +281,8 @@ const HomePage = () => {
                   </svg>
                 )
               },
-              { 
-                title: "AI Processing", 
+              {
+                title: "AI Processing",
                 description: "Our advanced algorithms analyze and grade each answer according to your criteria",
                 icon: (
                   <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -293,8 +290,8 @@ const HomePage = () => {
                   </svg>
                 )
               },
-              { 
-                title: "Get Results", 
+              {
+                title: "Get Results",
                 description: "Download comprehensive reports and analytics in seconds, not days",
                 icon: (
                   <svg className="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -307,8 +304,8 @@ const HomePage = () => {
                 key={step.title}
                 className="bg-white p-8 rounded-2xl shadow-xl relative z-10"
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.05, 
+                whileHover={{
+                  scale: 1.05,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                   y: -10
                 }}
@@ -327,8 +324,8 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      <motion.section 
-        id="video" 
+      <motion.section
+        id="video"
         ref={videoRef}
         className="py-24 bg-gradient-to-br from-indigo-900 to-purple-900 text-white relative overflow-hidden"
         variants={sectionVariants}
@@ -357,23 +354,23 @@ const HomePage = () => {
             }}
           />
         ))}
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-5xl font-bold mb-4 text-center"
             variants={itemVariants}
           >
             See <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-300">ScoreMatrix</span> in Action
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg text-white text-opacity-80 max-w-3xl mx-auto text-center mb-12"
             variants={itemVariants}
           >
             Watch how our platform revolutionizes the answer sheet evaluation process
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             className="relative mx-auto rounded-xl overflow-hidden shadow-2xl max-w-4xl"
             variants={itemVariants}
             whileHover={{ scale: 1.02 }}
@@ -391,8 +388,8 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      <motion.section 
-        id="pricing" 
+      <motion.section
+        id="pricing"
         ref={pricingRef}
         className="py-24 bg-white relative overflow-hidden"
         variants={sectionVariants}
@@ -401,27 +398,27 @@ const HomePage = () => {
       >
         <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-purple-200 to-indigo-100 rounded-full opacity-20"></div>
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tr from-pink-200 to-red-100 rounded-full opacity-20"></div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-5xl font-bold mb-4 text-center"
             variants={itemVariants}
           >
             Simple <span className="text-primary">Pricing</span>
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-16"
             variants={itemVariants}
           >
             Choose the plan that works best for you!
           </motion.p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { 
-                title: "Small-Scale Institution", 
-                price: "₹7.50", 
+              {
+                title: "Small-Scale Institution",
+                price: "₹7.50",
                 unit: "per booklet",
                 subtitle: "(20 pages)",
                 description: "Perfect for schools and small colleges",
@@ -433,7 +430,7 @@ const HomePage = () => {
                   "Email support"
                 ],
                 isPopular: false,
-                cta: "Get Started" 
+                cta: "Get Started"
               },
               {
                 title: "Growing Institution",
@@ -454,7 +451,7 @@ const HomePage = () => {
               },
               {
                 title: "Enterprise",
-                price: "₹18", 
+                price: "₹18",
                 unit: "per booklet",
                 subtitle: "(20 pages)",
                 description: "For large educational institutions",
@@ -473,14 +470,13 @@ const HomePage = () => {
             ].map((plan) => (
               <motion.div
                 key={plan.title}
-                className={`relative bg-white p-8 rounded-2xl border ${
-                  plan.isPopular 
-                    ? "border-purple-400 shadow-xl" 
-                    : "border-gray-200 shadow-lg"
-                }`}
+                className={`relative bg-white p-8 rounded-2xl border ${plan.isPopular
+                  ? "border-purple-400 shadow-xl"
+                  : "border-gray-200 shadow-lg"
+                  }`}
                 variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.03, 
+                whileHover={{
+                  scale: 1.03,
                   boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
                   y: -10
                 }}
@@ -490,10 +486,10 @@ const HomePage = () => {
                     Most Popular
                   </div>
                 )}
-                
+
                 <h3 className="text-xl font-bold mb-2">{plan.title}</h3>
                 <p className="text-gray-600 text-sm mb-6">{plan.description}</p>
-                
+
                 <div className="flex items-end mb-6">
                   <div className="text-4xl font-bold">{plan.price}</div>
                   <div className="ml-2 text-gray-600 pb-1">
@@ -501,7 +497,7 @@ const HomePage = () => {
                     <div className="text-sm">{plan.subtitle}</div>
                   </div>
                 </div>
-                
+
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start">
@@ -512,10 +508,10 @@ const HomePage = () => {
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <path 
-                          strokeLinecap="round" 
-                          strokeLinejoin="round" 
-                          strokeWidth="2" 
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
                           d="M5 13l4 4L19 7"
                         />
                       </svg>
@@ -523,14 +519,13 @@ const HomePage = () => {
                     </li>
                   ))}
                 </ul>
-                
+
                 <Link
                   href="/signup"
-                  className={`w-full block text-center py-3 rounded-lg font-medium transition duration-300 mt-auto ${
-                    plan.isPopular
-                      ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700"
-                      : "bg-gray-100 text-gray-800 hover:bg-gray-200"
-                  }`}
+                  className={`w-full block text-center py-3 rounded-lg font-medium transition duration-300 mt-auto ${plan.isPopular
+                    ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700"
+                    : "bg-gray-100 text-gray-800 hover:bg-gray-200"
+                    }`}
                 >
                   {plan.cta}
                 </Link>
@@ -540,8 +535,8 @@ const HomePage = () => {
         </div>
       </motion.section>
 
-      <motion.section 
-        id="why-us" 
+      <motion.section
+        id="why-us"
         ref={whyUsRef}
         className="py-24 bg-gradient-to-br from-blue-900 to-indigo-900 text-white relative overflow-hidden"
         variants={sectionVariants}
@@ -573,22 +568,22 @@ const HomePage = () => {
             />
           ))}
         </div>
-        
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.h2 
+          <motion.h2
             className="text-3xl md:text-5xl font-bold mb-4 text-center"
             variants={itemVariants}
           >
             Why Choose <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-300">ScoreMatrix</span>?
           </motion.h2>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg text-white text-opacity-80 max-w-3xl mx-auto text-center mb-16"
             variants={itemVariants}
           >
             Join thousands of educational institutions that have transformed their evaluation process
           </motion.p>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
@@ -627,69 +622,69 @@ const HomePage = () => {
                   </svg>
                 )
               },
-              ].map((feature) => (
-                <motion.div
-                  key={feature.title}
-                  className="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm border border-white border-opacity-10"
-                  variants={itemVariants}
-                  whileHover={{ 
-                    scale: 1.05, 
-                    backgroundColor: "rgba(255, 255, 255, 0.15)",
-                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                  }}
-                >
-                  <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-white bg-opacity-10 mx-auto">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-2xl font-semibold mb-4 text-center">{feature.title}</h3>
-                  <p className="text-white text-opacity-80 text-center">{feature.description}</p>
-                </motion.div>
-              ))}
-                        </div>
-                      </div>
-                    </motion.section>
-              
-                    <motion.section 
-                      id="community" 
-                      ref={communityRef}
-                      className="py-24 bg-white relative overflow-hidden"
-                      variants={sectionVariants}
-                      initial="hidden"
-                      animate={communityControls}
-                    >
-                      <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-purple-200 to-indigo-100 rounded-full opacity-20"></div>
-                      <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tr from-pink-200 to-red-100 rounded-full opacity-20"></div>
-                      
-                      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                        <motion.h2 
-                          className="text-3xl md:text-5xl font-bold mb-4 text-center"
-                          variants={itemVariants}
-                        >
-                          Join Our <span className="text-primary">Community</span>
-                        </motion.h2>
-                        
-                        <motion.p 
-                          className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-16"
-                          variants={itemVariants}
-                        >
-                          Join Us in Revolutionizing Evaluation Processes!
-                        </motion.p>
-                        
-                        <div className="flex flex-col items-center">
-                          <motion.div
-                            className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg transition duration-300 inline-block"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Link href="/community">
-                              Join Now
-                            </Link>
-                          </motion.div>
-                        </div>
-                      </div>
-                    </motion.section>
-                  </div>
-                );
-              };
-              
-              export default HomePage;
+            ].map((feature) => (
+              <motion.div
+                key={feature.title}
+                className="bg-white bg-opacity-10 p-8 rounded-2xl backdrop-blur-sm border border-white border-opacity-10"
+                variants={itemVariants}
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "rgba(255, 255, 255, 0.15)",
+                  boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+                }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-white bg-opacity-10 mx-auto">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-semibold mb-4 text-center">{feature.title}</h3>
+                <p className="text-white text-opacity-80 text-center">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      <motion.section
+        id="community"
+        ref={communityRef}
+        className="py-24 bg-white relative overflow-hidden"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={communityControls}
+      >
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-purple-200 to-indigo-100 rounded-full opacity-20"></div>
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tr from-pink-200 to-red-100 rounded-full opacity-20"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-4 text-center"
+            variants={itemVariants}
+          >
+            Join Our <span className="text-primary">Community</span>
+          </motion.h2>
+
+          <motion.p
+            className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-16"
+            variants={itemVariants}
+          >
+            Join Us in Revolutionizing Evaluation Processes!
+          </motion.p>
+
+          <div className="flex flex-col items-center">
+            <motion.div
+              className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg transition duration-300 inline-block"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link href="/community">
+                Join Now
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+    </div>
+  );
+};
+
+export default HomePage;

@@ -1,5 +1,5 @@
 import Link from "next/link"
-
+import React from 'react';
 const Footer = () => {
   return (
     <footer className="bg-gray-100 border-t border-gray-200">

@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Upload } from "lucide-react";
@@ -87,9 +88,8 @@ const UploadReferenceFile: React.FC<UploadReferenceFileProps> = ({ onUpload, onP
 
         {/* File Upload Section */}
         <div
-          className={`border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-colors ${
-            file ? "border-primary" : "border-gray-300 hover:border-gray-400"
-          }`}
+          className={`border-2 border-dashed rounded-lg p-12 text-center cursor-pointer transition-colors ${file ? "border-primary" : "border-gray-300 hover:border-gray-400"
+            }`}
           onClick={() => fileInputRef.current?.click()}
         >
           {isUploading ? (
@@ -149,9 +149,8 @@ const UploadReferenceFile: React.FC<UploadReferenceFileProps> = ({ onUpload, onP
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className={`px-6 py-2 rounded-md text-white font-semibold ${
-            isNextEnabled ? "bg-primary hover:bg-primary-dark" : "bg-gray-300 cursor-not-allowed"
-          }`}
+          className={`px-6 py-2 rounded-md text-white font-semibold ${isNextEnabled ? "bg-primary hover:bg-primary-dark" : "bg-gray-300 cursor-not-allowed"
+            }`}
           onClick={onNext}
           disabled={!isNextEnabled || isUploading}
         >

@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { createContext, useContext, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { auth } from "../lib/firebase.config";
@@ -31,7 +32,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       if (!currentUser) {
-        router.push("/login"); 
+        router.push("/login");
       }
     });
 
@@ -57,7 +58,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const logout = async () => {
     await signOut(auth);
-    router.push("/login"); 
+    router.push("/login");
   };
 
   const signInWithGoogle = async () => {

@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -10,11 +11,11 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     if (!user) {
-      router.replace("/"); 
+      router.replace("/");
     }
   }, [user, router]);
 
-  if (!user) return null; 
+  if (!user) return null;
 
   return <>{children}</>;
 };

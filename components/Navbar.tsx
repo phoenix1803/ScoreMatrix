@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { useAuth } from "../context/AuthContext";
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -19,12 +20,12 @@ const Navbar = () => {
     setNavItems(
       user
         ? [
-            { name: "Home", href: "/dashboard" },
-            { name: "Upload", href: "/upload" },
-            { name: "Settings", href: "/settings" },
-            { name: "Help", href: "/help" },
-            { name: "Profile", href: "/profile" },
-          ]
+          { name: "Home", href: "/dashboard" },
+          { name: "Upload", href: "/upload" },
+          { name: "Settings", href: "/settings" },
+          { name: "Help", href: "/help" },
+          { name: "Profile", href: "/profile" },
+        ]
         : [{ name: "Login", href: "/login" }]
     );
   }, [user]);
@@ -32,13 +33,13 @@ const Navbar = () => {
   useEffect(() => {
     // Trigger logo animation on initial load
     setAnimate(true);
-    
+
     // Reset and retrigger animation when hovered
     const interval = setInterval(() => {
       setAnimate(false);
       setTimeout(() => setAnimate(true), 50);
     }, 10000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
@@ -62,7 +63,7 @@ const Navbar = () => {
                   ))}
                 </div>
               </div>
-              
+
               {/* Main logo text */}
               <div className="relative px-4 py-2 text-2xl font-bold text-primary">
                 <span className={`inline-block ${animate ? 'animate-fade-in' : 'opacity-0'} transition-all duration-500 delay-100`}>
@@ -81,11 +82,10 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
-                  pathname === item.href
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${pathname === item.href
                     ? "border-primary text-primary"
                     : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                }`}
+                  }`}
               >
                 {item.name}
               </Link>
@@ -123,11 +123,10 @@ const Navbar = () => {
             <Link
               key={item.name}
               href={item.href}
-              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${
-                pathname === item.href
+              className={`block pl-3 pr-4 py-2 border-l-4 text-base font-medium ${pathname === item.href
                   ? "border-primary text-primary bg-primary-50"
                   : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
-              }`}
+                }`}
             >
               {item.name}
             </Link>

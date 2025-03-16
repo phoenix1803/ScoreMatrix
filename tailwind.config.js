@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"],
   content: [
     "app/**/*.{ts,tsx}",
@@ -18,11 +18,11 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#3B82F6",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
+          DEFAULT: "#8B5CF6",
           foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
@@ -45,13 +45,10 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-
-        //Keeping existing colors
-        primary: "#3B82F6",
-        secondary: "#8B5CF6",
+        // Additional custom colors
         tertiary: "#EC4899",
         quarternary: "#F59E0B",
-        bggg:"#534534",
+        bggg: "#534534",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -60,6 +57,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
 }
 
