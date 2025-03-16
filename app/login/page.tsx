@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "../../context/AuthContext";
+import { User } from "firebase/auth"; // Import User type
 
 const LoginPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -13,7 +14,7 @@ const LoginPage = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
-  const { login, signup, signInWithGoogle } = useAuth();
+  const { login, signup, signInWithGoogle, setUser } = useAuth(); // Destructure setUser
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,10 +24,10 @@ const LoginPage = () => {
     const hardcodedEmail = "admin@gmail.com";
     const hardcodedPassword = "1234";
 
-    // Check if the entered email and password match the hardcoded values
     if (isLogin && email === hardcodedEmail && password === hardcodedPassword) {
       // Simulate a successful login
       console.log("Logged in with hardcoded credentials");
+      setUser({ uid: "hardcoded-user-id", email: hardcodedEmail } as User); // Manually set the user
       router.push("/dashboard");
       return;
     }
